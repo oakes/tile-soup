@@ -1,6 +1,5 @@
 (ns tile-soup.layer
-  (:require [clojure.spec.alpha :as s]
-            [tile-soup.tag :as t]))
+  (:require [clojure.spec.alpha :as s]))
 
 (s/def ::name string?)
 

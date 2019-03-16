@@ -8,4 +8,4 @@
 (st/instrument)
 (set! s/*explain-out* expound/printer)
 
-(println (c/parse-map (read-public "level1.tmx")))
+(println (pr-str (c/parse-map (read-public "level1.tmx"))))
