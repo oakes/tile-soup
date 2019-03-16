@@ -5,7 +5,8 @@
             [tile-soup.tileoffset :as tileoffset]
             [tile-soup.grid :as grid]
             [tile-soup.properties :as properties]
-            [tile-soup.terraintypes :as terraintypes]))
+            [tile-soup.terraintypes :as terraintypes]
+            [tile-soup.tile :as tile]))
 
 (s/def ::firstgid u/str->int)
 (s/def ::source string?)
@@ -34,6 +35,7 @@
 (defmethod child :properties [_] ::properties/properties)
 (defmethod child :image [_] ::image/image)
 (defmethod child :terraintypes [_] ::terraintypes/terraintypes)
+(defmethod child :tile [_] ::tile/tile)
 
 (s/def ::content (s/coll-of (s/multi-spec child :tag)))
 
