@@ -1,8 +1,8 @@
 (ns tile-soup.map
   (:require [clojure.spec.alpha :as s]
+            [tile-soup.utils :as u]
             [tile-soup.tileset :as tileset]
-            [tile-soup.layer :as layer]
-            [tile-soup.utils :as u]))
+            [tile-soup.layer :as layer]))
 
 (s/def ::version string?)
 (s/def ::tiledversion string?)
@@ -25,7 +25,6 @@
 (s/def ::nextlayerid u/str->num)
 (s/def ::nextobjectid u/str->num)
 
-(s/def ::tag #{:map})
 (s/def ::attrs (s/keys :opt-un [::version
                                 ::tiledversion
                                 ::orientation
@@ -40,9 +39,14 @@
                                 ::backgroundcolor
                                 ::nextlayerid
                                 ::nextobjectid]))
+
+(defmulti child :tag)
+(defmethod child :tileset [_] ::tileset/tileset)
+(defmethod child :layer [_] ::layer/layer)
+
 (s/def ::content (s/coll-of (s/or
-                              :tileset ::tileset/tileset
-                              :layer ::layer/layer
+                              :tag (s/multi-spec child :tag)
                               :string string?)))
-(s/def ::map (s/keys :req-un [::tag ::attrs ::content]))
+
+(s/def ::map (s/keys :req-un [::attrs ::content]))
 

@@ -1,10 +1,10 @@
 (ns tile-soup.layer
   (:require [clojure.spec.alpha :as s]
-            [tile-soup.attrs :as attrs]))
+            [tile-soup.tag :as t]))
 
 (s/def ::name string?)
 
-(s/def ::tag #{:layer})
 (s/def ::attrs (s/keys :opt-un [::name]))
-(s/def ::layer (s/keys :req-un [::tag ::attrs]))
+
+(s/def ::layer (s/keys :req-un [::attrs]))
 

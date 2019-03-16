@@ -3,7 +3,7 @@
 
 (s/def ::name string?)
 
-(s/def ::tag #{:tileset})
 (s/def ::attrs (s/keys :opt-un [::name]))
-(s/def ::tileset (s/keys :req-un [::tag ::attrs]))
+
+(s/def ::tileset (s/keys :req-un [::attrs]))
 
