@@ -36,7 +36,6 @@
 (defmethod child :image [_] ::image/image)
 (defmethod child :terraintypes [_] ::terraintypes/terraintypes)
 (defmethod child :tile [_] ::tile/tile)
-
 (s/def ::content (s/coll-of (s/multi-spec child :tag)))
 
 (s/def ::tileset (s/keys :req-un [::attrs ::content]))

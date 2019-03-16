@@ -1,6 +1,7 @@
 (ns tile-soup.map
   (:require [clojure.spec.alpha :as s]
             [tile-soup.utils :as u]
+            [tile-soup.properties :as properties]
             [tile-soup.tileset :as tileset]
             [tile-soup.layer :as layer]))
 
@@ -42,9 +43,9 @@
 
 (defmulti child :tag)
 (defmethod child nil [_] any?)
+(defmethod child :properties [_] ::properties/properties)
 (defmethod child :tileset [_] ::tileset/tileset)
 (defmethod child :layer [_] ::layer/layer)
-
 (s/def ::content (s/coll-of (s/multi-spec child :tag)))
 
 (s/def ::map (s/keys :req-un [::attrs ::content]))
