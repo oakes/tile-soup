@@ -16,7 +16,7 @@
 (defmulti content :tag)
 (defmethod content nil [_] any?)
 (defmethod content :tile [_] ::tile/tile)
-(s/def ::content (s/coll-of (s/multi-spec content :tag)))
+(s/def ::content (s/coll-of (s/multi-spec content (fn [gen-v _] gen-v))))
 
 (s/def ::grid (s/keys :req-un [::attrs ::content]))
 

@@ -30,7 +30,7 @@
 (defmethod content nil [_] any?)
 (defmethod content :properties [_] ::properties/properties)
 (defmethod content :data [_] ::data/data)
-(s/def ::content (s/coll-of (s/multi-spec content :tag)))
+(s/def ::content (s/coll-of (s/multi-spec content (fn [gen-v _] gen-v))))
 
 (s/def ::layer (s/keys :req-un [::attrs ::content]))
 

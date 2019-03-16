@@ -46,7 +46,7 @@
 (defmethod content :properties [_] ::properties/properties)
 (defmethod content :tileset [_] ::tileset/tileset)
 (defmethod content :layer [_] ::layer/layer)
-(s/def ::content (s/coll-of (s/multi-spec content :tag)))
+(s/def ::content (s/coll-of (s/multi-spec content (fn [gen-v _] gen-v))))
 
 (s/def ::map (s/keys :req-un [::attrs ::content]))
 

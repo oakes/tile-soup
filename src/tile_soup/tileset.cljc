@@ -36,7 +36,7 @@
 (defmethod content :image [_] ::image/image)
 (defmethod content :terraintypes [_] ::terraintypes/terraintypes)
 (defmethod content :tile [_] ::tile/tile)
-(s/def ::content (s/coll-of (s/multi-spec content :tag)))
+(s/def ::content (s/coll-of (s/multi-spec content (fn [gen-v _] gen-v))))
 
 (s/def ::tileset (s/keys :req-un [::attrs ::content]))
 
