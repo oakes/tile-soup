@@ -14,16 +14,16 @@
                        "right-up"
                        "left-down"
                        "left-up"})
-(s/def ::width u/str->num)
-(s/def ::height u/str->num)
-(s/def ::tilewidth u/str->num)
-(s/def ::tileheight u/str->num)
-(s/def ::hexsidelength u/str->num)
+(s/def ::width u/str->int)
+(s/def ::height u/str->int)
+(s/def ::tilewidth u/str->int)
+(s/def ::tileheight u/str->int)
+(s/def ::hexsidelength u/str->int)
 (s/def ::staggeraxis #{"x" "y"})
 (s/def ::staggerindex #{"even" "odd"})
 (s/def ::backgroundcolor string?)
-(s/def ::nextlayerid u/str->num)
-(s/def ::nextobjectid u/str->num)
+(s/def ::nextlayerid u/str->int)
+(s/def ::nextobjectid u/str->int)
 
 (s/def ::attrs (s/keys :opt-un [::version
                                 ::tiledversion
@@ -41,12 +41,11 @@
                                 ::nextobjectid]))
 
 (defmulti child :tag)
+(defmethod child nil [_] any?)
 (defmethod child :tileset [_] ::tileset/tileset)
 (defmethod child :layer [_] ::layer/layer)
 
-(s/def ::content (s/coll-of (s/or
-                              :tag (s/multi-spec child :tag)
-                              :string string?)))
+(s/def ::content (s/coll-of (s/multi-spec child :tag)))
 
 (s/def ::map (s/keys :req-un [::attrs ::content]))
 
