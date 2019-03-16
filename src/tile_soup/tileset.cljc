@@ -3,7 +3,8 @@
             [tile-soup.utils :as u]
             [tile-soup.image :as image]
             [tile-soup.tileoffset :as tileoffset]
-            [tile-soup.grid :as grid]))
+            [tile-soup.grid :as grid]
+            [tile-soup.properties :as properties]))
 
 (s/def ::firstgid u/str->int)
 (s/def ::source string?)
@@ -29,6 +30,7 @@
 (defmethod child nil [_] any?)
 (defmethod child :tileoffset [_] ::tileoffset/tileoffset)
 (defmethod child :grid [_] ::grid/grid)
+(defmethod child :properties [_] ::properties/properties)
 (defmethod child :image [_] ::image/image)
 
 (s/def ::content (s/coll-of (s/multi-spec child :tag)))

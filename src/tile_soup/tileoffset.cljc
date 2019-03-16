@@ -5,7 +5,7 @@
 (s/def ::x u/str->int)
 (s/def ::y u/str->int)
 
-(s/def ::attrs (s/keys :opt-un [::x ::y]))
+(s/def ::attrs (s/keys :req-un [::x ::y]))
 
 (s/def ::tileoffset (s/keys :req-un [::attrs]))
 
