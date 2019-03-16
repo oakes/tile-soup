@@ -41,12 +41,12 @@
                                 ::nextlayerid
                                 ::nextobjectid]))
 
-(defmulti child :tag)
-(defmethod child nil [_] any?)
-(defmethod child :properties [_] ::properties/properties)
-(defmethod child :tileset [_] ::tileset/tileset)
-(defmethod child :layer [_] ::layer/layer)
-(s/def ::content (s/coll-of (s/multi-spec child :tag)))
+(defmulti content :tag)
+(defmethod content nil [_] any?)
+(defmethod content :properties [_] ::properties/properties)
+(defmethod content :tileset [_] ::tileset/tileset)
+(defmethod content :layer [_] ::layer/layer)
+(s/def ::content (s/coll-of (s/multi-spec content :tag)))
 
 (s/def ::map (s/keys :req-un [::attrs ::content]))
 

@@ -13,10 +13,10 @@
                                 ::width
                                 ::height]))
 
-(defmulti child :tag)
-(defmethod child nil [_] any?)
-(defmethod child :tile [_] ::tile/tile)
-(s/def ::content (s/coll-of (s/multi-spec child :tag)))
+(defmulti content :tag)
+(defmethod content nil [_] any?)
+(defmethod content :tile [_] ::tile/tile)
+(s/def ::content (s/coll-of (s/multi-spec content :tag)))
 
 (s/def ::grid (s/keys :req-un [::attrs ::content]))
 

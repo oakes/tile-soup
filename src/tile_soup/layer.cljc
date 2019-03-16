@@ -26,11 +26,11 @@
                                 ::offsetx
                                 ::offsety]))
 
-(defmulti child :tag)
-(defmethod child nil [_] any?)
-(defmethod child :properties [_] ::properties/properties)
-(defmethod child :data [_] ::data/data)
-(s/def ::content (s/coll-of (s/multi-spec child :tag)))
+(defmulti content :tag)
+(defmethod content nil [_] any?)
+(defmethod content :properties [_] ::properties/properties)
+(defmethod content :data [_] ::data/data)
+(s/def ::content (s/coll-of (s/multi-spec content :tag)))
 
 (s/def ::layer (s/keys :req-un [::attrs ::content]))
 

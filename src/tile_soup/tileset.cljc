@@ -28,15 +28,15 @@
                                 ::tilecount
                                 ::columns]))
 
-(defmulti child :tag)
-(defmethod child nil [_] any?)
-(defmethod child :tileoffset [_] ::tileoffset/tileoffset)
-(defmethod child :grid [_] ::grid/grid)
-(defmethod child :properties [_] ::properties/properties)
-(defmethod child :image [_] ::image/image)
-(defmethod child :terraintypes [_] ::terraintypes/terraintypes)
-(defmethod child :tile [_] ::tile/tile)
-(s/def ::content (s/coll-of (s/multi-spec child :tag)))
+(defmulti content :tag)
+(defmethod content nil [_] any?)
+(defmethod content :tileoffset [_] ::tileoffset/tileoffset)
+(defmethod content :grid [_] ::grid/grid)
+(defmethod content :properties [_] ::properties/properties)
+(defmethod content :image [_] ::image/image)
+(defmethod content :terraintypes [_] ::terraintypes/terraintypes)
+(defmethod content :tile [_] ::tile/tile)
+(s/def ::content (s/coll-of (s/multi-spec content :tag)))
 
 (s/def ::tileset (s/keys :req-un [::attrs ::content]))
 
