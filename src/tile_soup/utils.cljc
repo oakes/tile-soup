@@ -38,3 +38,11 @@
 
 (def comma-str->vector (s/conformer comma-str->vector))
 
+(defn str->boolean* [s]
+  (let [ret (str->int* s)]
+    (if (= ret ::s/invalid)
+      ret
+      (= ret 1))))
+
+(def str->boolean (s/conformer str->boolean*))
+
