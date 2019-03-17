@@ -41,12 +41,16 @@
                                 ::nextlayerid
                                 ::nextobjectid]))
 
-(defmulti content :tag)
-(defmethod content nil [_] any?)
-(defmethod content :properties [_] ::properties/properties)
-(defmethod content :tileset [_] ::tileset/tileset)
-(defmethod content :layer [_] ::layer/layer)
-(s/def ::content (s/coll-of (s/multi-spec content (fn [gen-v _] gen-v))))
+(defmulti spec :tag)
+(defmethod spec :properties [_] ::properties/properties)
+(defmethod spec :tileset [_] ::tileset/tileset)
+(defmethod spec :layer [_] ::layer/layer)
+(defmethod spec :default [{:keys [tag]}]
+  (throw (ex-info (str tag " not supported in map tags") {})))
+(s/def ::content (s/conformer (fn [x]
+                                (->> x
+                                     (remove string?)
+                                     (mapv #(s/conform (spec %) %))))))
 
 (s/def ::map (s/keys :req-un [::attrs ::content]))
 
