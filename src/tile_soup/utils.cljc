@@ -50,7 +50,7 @@
         []
         (str/split s #",")))))
 
-(def comma-str->vector (s/conformer comma-str->vector))
+(def comma-str->vector (s/conformer comma-str->vector*))
 
 (defn str->boolean* [s]
   (let [ret (str->int* s)]
