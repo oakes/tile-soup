@@ -8,7 +8,7 @@
 (st/instrument)
 (set! s/*explain-out* expound/printer)
 
-;(println (pr-str (c/parse (read-public "koalio-b64.tmx"))))
+(println (pr-str (c/parse (read-public "koalio-b64.tmx"))))
 ;(println (pr-str (parse "koalio-b64.tmx")))
 
 ;(println (pr-str (c/parse (read-public "koalio-xml.tmx"))))
@@ -20,7 +20,7 @@
 ;(println (pr-str (c/parse (read-public "koalio-b64-gzip.tmx"))))
 ;(println (pr-str (parse "koalio-b64-gzip.tmx")))
 
-(println (pr-str (c/parse (read-public "tmx/test_hexagonal_tile_60x60x30.tmx"))))
+;(println (pr-str (c/parse (read-public "tmx/test_hexagonal_tile_60x60x30.tmx"))))
 
 #_
 (doseq [xml [(read-public "tmx/desert.tmx")
