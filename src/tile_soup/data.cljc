@@ -4,7 +4,10 @@
             [tile-soup.utils :as u]))
 
 (s/def ::encoding #{"base64" "csv"})
-(s/def ::compression #{"gzip" "zlib"})
+
+(s/def ::compression ;#{"gzip" "zlib"}
+  (s/conformer (fn [_]
+                 (throw (ex-info "Compression is not currently supported" {})))))
 
 (s/def ::attrs (s/keys :opt-un [::encoding
                                 ::compression]))
