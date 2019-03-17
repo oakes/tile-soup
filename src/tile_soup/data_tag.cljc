@@ -3,11 +3,13 @@
             [tile-soup.utils :as u]))
 
 (defn- tile [tile]
-  (or (some->> tile :attrs :gid (u/parse u/str->int))
-      0))
+  (when (= :tile (:tag tile))
+    (or (some->> tile :attrs :gid (u/parse u/str->int))
+        0)))
 
 (s/def ::content (s/conformer (fn [x]
                                 (->> x
                                      (remove string?)
-                                     (mapv tile)))))
+                                     (keep tile)
+                                     vec))))
 
