@@ -14,3 +14,4 @@
 ;(println (pr-str (c/parse-map (read-public "koalio-xml.tmx"))))
 ;(println (pr-str (parse-map "koalio-xml.tmx")))
 
+(println (pr-str (c/parse-map (read-public "test_hexagonal_tile_60x60x30.tmx"))))

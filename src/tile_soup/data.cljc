@@ -1,10 +1,10 @@
 (ns tile-soup.data
   (:require [clojure.spec.alpha :as s]
             [tile-soup.data-base64 :as data-base64]
+            [tile-soup.data-csv :as data-csv]
             [tile-soup.utils :as u]))
 
 (s/def ::encoding #{"base64" "csv"})
-
 (s/def ::compression ;#{"gzip" "zlib"}
   (s/conformer (fn [_]
                  (throw (ex-info "Compression is not currently supported" {})))))
@@ -27,5 +27,6 @@
 (defmulti data #(-> % :attrs :encoding))
 (defmethod data nil [_] (s/keys :req-un [::attrs ::content]))
 (defmethod data "base64" [_] (s/keys :req-un [::attrs ::data-base64/content]))
+(defmethod data "csv" [_] (s/keys :req-un [::attrs ::data-csv/content]))
 (s/def ::data (s/multi-spec data (fn [gen-v _] gen-v)))
 
