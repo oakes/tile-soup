@@ -13,10 +13,7 @@
 (defmethod spec :properties [_] ::properties/properties)
 (defmethod spec :default [x]
   (throw (ex-info (str (:tag x) " not supported in terrain tags") {})))
-(s/def ::content (s/conformer (fn [x]
-                                (->> x
-                                     (remove string?)
-                                     (mapv #(s/conform (spec %) %))))))
+(s/def ::content (u/conformer spec))
 
 (s/def ::terrain (s/keys :req-un [::attrs ::content]))
 

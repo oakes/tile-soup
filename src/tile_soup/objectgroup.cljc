@@ -35,10 +35,7 @@
 (defmethod spec :object [_] ::object/object)
 (defmethod spec :default [x]
   (throw (ex-info (str (:tag x) " not supported in objectgroup tags") {})))
-(s/def ::content (s/conformer (fn [x]
-                                (->> x
-                                     (remove string?)
-                                     (mapv #(s/conform (spec %) %))))))
+(s/def ::content (u/conformer spec))
 
 (s/def ::objectgroup (s/keys :req-un [::attrs ::content]))
 

@@ -1,13 +1,27 @@
 (ns tile-soup.utils
   (:require [clojure.spec.alpha :as s]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [expound.alpha :as expound]))
+
+(defn parse [spec content]
+  (let [res (s/conform spec content)]
+    (if (= ::s/invalid res)
+      (throw (ex-info (expound/expound-str spec content) {}))
+      res)))
+
+(defn conformer [spec]
+  (s/conformer
+    (fn [x]
+      (->> x
+           (remove string?)
+           (mapv #(parse (spec %) %))))))
 
 (defn str->int* [s]
   #?(:clj (try
             (Integer/parseInt s)
             (catch Exception _ ::s/invalid))
      :cljs (let [n (js/parseInt s)]
-             (if (= n js/NaN)
+             (if (js/isNaN n)
                ::s/invalid
                n))))
 

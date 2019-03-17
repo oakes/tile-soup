@@ -3,7 +3,7 @@
             [tile-soup.utils :as u]))
 
 (defn- tile [tile]
-  (or (some-> tile :attrs :gid u/str->int*)
+  (or (some->> tile :attrs :gid (u/parse u/str->int))
       0))
 
 (s/def ::content (s/conformer (fn [x]

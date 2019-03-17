@@ -37,10 +37,7 @@
 (defmethod spec :polyline [_] (s/keys :req-un [::points]))
 (defmethod spec :default [x]
   (throw (ex-info (str (:tag x) " not supported in object tags") {})))
-(s/def ::content (s/conformer (fn [x]
-                                (->> x
-                                     (remove string?)
-                                     (mapv #(s/conform (spec %) %))))))
+(s/def ::content (u/conformer spec))
 
 (s/def ::object (s/keys :req-un [::attrs ::content]))
 
