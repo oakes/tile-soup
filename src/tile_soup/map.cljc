@@ -45,8 +45,8 @@
 (defmethod spec :properties [_] ::properties/properties)
 (defmethod spec :tileset [_] ::tileset/tileset)
 (defmethod spec :layer [_] ::layer/layer)
-(defmethod spec :default [{:keys [tag]}]
-  (throw (ex-info (str tag " not supported in map tags") {})))
+(defmethod spec :default [x]
+  (throw (ex-info (str (:tag x) " not supported in map tags") {})))
 (s/def ::content (s/conformer (fn [x]
                                 (->> x
                                      (remove string?)

@@ -28,15 +28,19 @@
                                 ::tilecount
                                 ::columns]))
 
-(defmulti content :tag)
-(defmethod content nil [_] any?)
-(defmethod content :tileoffset [_] ::tileoffset/tileoffset)
-(defmethod content :grid [_] ::grid/grid)
-(defmethod content :properties [_] ::properties/properties)
-(defmethod content :image [_] ::image/image)
-(defmethod content :terraintypes [_] ::terraintypes/terraintypes)
-(defmethod content :tile [_] ::tile/tile)
-(s/def ::content (s/coll-of (s/multi-spec content (fn [gen-v _] gen-v))))
+(defmulti spec :tag)
+(defmethod spec :tileoffset [_] ::tileoffset/tileoffset)
+(defmethod spec :grid [_] ::grid/grid)
+(defmethod spec :properties [_] ::properties/properties)
+(defmethod spec :image [_] ::image/image)
+(defmethod spec :terraintypes [_] ::terraintypes/terraintypes)
+(defmethod spec :tile [_] ::tile/tile)
+(defmethod spec :default [x]
+  (throw (ex-info (str (:tag x) " not supported in tileset tags") {})))
+(s/def ::content (s/conformer (fn [x]
+                                (->> x
+                                     (remove string?)
+                                     (mapv #(s/conform (spec %) %))))))
 
 (s/def ::tileset (s/keys :req-un [::attrs ::content]))
 

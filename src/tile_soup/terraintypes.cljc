@@ -2,10 +2,14 @@
   (:require [clojure.spec.alpha :as s]
             [tile-soup.terrain :as terrain]))
 
-(defmulti child :tag)
-(defmethod child nil [_] any?)
-(defmethod child :terrain [_] ::terrain/terrain)
-(s/def ::content (s/coll-of (s/multi-spec child (fn [gen-v _] gen-v))))
+(defmulti spec :tag)
+(defmethod spec :terrain [_] ::terrain/terrain)
+(defmethod spec :default [x]
+  (throw (ex-info (str (:tag x) " not supported in terraintypes tags") {})))
+(s/def ::content (s/conformer (fn [x]
+                                (->> x
+                                     (remove string?)
+                                     (mapv #(s/conform (spec %) %))))))
 
 (s/def ::terraintypes (s/keys :req-un [::content]))
 

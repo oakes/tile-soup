@@ -9,10 +9,14 @@
 (s/def ::attrs (s/keys :req-un [::name
                                 ::tile]))
 
-(defmulti content :tag)
-(defmethod content nil [_] any?)
-(defmethod content :properties [_] ::properties/properties)
-(s/def ::content (s/coll-of (s/multi-spec content (fn [gen-v _] gen-v))))
+(defmulti spec :tag)
+(defmethod spec :properties [_] ::properties/properties)
+(defmethod spec :default [x]
+  (throw (ex-info (str (:tag x) " not supported in terrain tags") {})))
+(s/def ::content (s/conformer (fn [x]
+                                (->> x
+                                     (remove string?)
+                                     (mapv #(s/conform (spec %) %))))))
 
 (s/def ::terrain (s/keys :req-un [::attrs ::content]))
 

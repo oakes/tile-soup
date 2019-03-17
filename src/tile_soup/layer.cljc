@@ -26,11 +26,15 @@
                                 ::offsetx
                                 ::offsety]))
 
-(defmulti content :tag)
-(defmethod content nil [_] any?)
-(defmethod content :properties [_] ::properties/properties)
-(defmethod content :data [_] ::data/data)
-(s/def ::content (s/coll-of (s/multi-spec content (fn [gen-v _] gen-v))))
+(defmulti spec :tag)
+(defmethod spec :properties [_] ::properties/properties)
+(defmethod spec :data [_] ::data/data)
+(defmethod spec :default [x]
+  (throw (ex-info (str (:tag x) " not supported in layer tags") {})))
+(s/def ::content (s/conformer (fn [x]
+                                (->> x
+                                     (remove string?)
+                                     (mapv #(s/conform (spec %) %))))))
 
 (s/def ::layer (s/keys :req-un [::attrs ::content]))
 
