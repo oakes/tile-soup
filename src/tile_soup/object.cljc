@@ -27,8 +27,14 @@
                                 ::visible
                                 ::template]))
 
+(s/def ::points u/comma-str->vector)
+
 (defmulti spec :tag)
 (defmethod spec :properties [_] ::properties/properties)
+(defmethod spec :ellipse [_] map?)
+(defmethod spec :point [_] map?)
+(defmethod spec :polygon [_] (s/keys :req-un [::points]))
+(defmethod spec :polyline [_] (s/keys :req-un [::points]))
 (defmethod spec :default [x]
   (throw (ex-info (str (:tag x) " not supported in object tags") {})))
 (s/def ::content (s/conformer (fn [x]
