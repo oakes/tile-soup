@@ -6,7 +6,8 @@
             [tile-soup.grid :as grid]
             [tile-soup.properties :as properties]
             [tile-soup.terraintypes :as terraintypes]
-            [tile-soup.tile :as tile]))
+            [tile-soup.tile :as tile]
+            [tile-soup.wangsets :as wangsets]))
 
 (s/def ::firstgid u/str->int)
 (s/def ::source string?)
@@ -36,6 +37,7 @@
 (defmethod spec :image [_] ::image/image)
 (defmethod spec :terraintypes [_] ::terraintypes/terraintypes)
 (defmethod spec :tile [_] ::tile/tile)
+(defmethod spec :wangsets [_] ::wangsets/wangsets)
 (defmethod spec :default [x]
   (throw (ex-info (str (:tag x) " not supported in tileset tags") {})))
 (s/def ::content (u/conformer spec))
