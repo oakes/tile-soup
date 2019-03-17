@@ -1,7 +1,8 @@
 (ns tile-soup.object
   (:require [clojure.spec.alpha :as s]
             [tile-soup.utils :as u]
-            [tile-soup.properties :as properties]))
+            [tile-soup.properties :as properties]
+            [tile-soup.text :as text]))
 
 (s/def ::id u/str->int)
 (s/def ::name string?)
@@ -35,6 +36,7 @@
 (defmethod spec :point [_] map?)
 (defmethod spec :polygon [_] (s/keys :req-un [::points]))
 (defmethod spec :polyline [_] (s/keys :req-un [::points]))
+(defmethod spec :text [_] ::text/text)
 (defmethod spec :default [x]
   (throw (ex-info (str (:tag x) " not supported in object tags") {})))
 (s/def ::content (u/conformer spec))
