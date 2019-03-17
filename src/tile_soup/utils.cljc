@@ -17,38 +17,38 @@
            (mapv #(parse (spec %) %))))))
 
 (defn str->int* [s]
-  #?(:clj (try
-            (Integer/parseInt s)
-            (catch Exception _ ::s/invalid))
-     :cljs (let [n (js/parseInt s)]
-             (if (js/isNaN n)
-               ::s/invalid
-               n))))
+  (let [s (str/trim s)]
+    #?(:clj (try
+              (Integer/parseInt s)
+              (catch Exception _ ::s/invalid))
+       :cljs (let [n (js/parseInt s)]
+               (if (js/isNaN n)
+                 ::s/invalid
+                 n)))))
 
 (def str->int (s/conformer str->int*))
 
 (defn str->float* [s]
-  #?(:clj (try
-            (Double/parseDouble s)
-            (catch Exception _ ::s/invalid))
-     :cljs (let [n (js/parseFloat s)]
-             (if (= n js/NaN)
-               ::s/invalid
-               n))))
+  (let [s (str/trim s)]
+    #?(:clj (try
+              (Double/parseDouble s)
+              (catch Exception _ ::s/invalid))
+       :cljs (let [n (js/parseFloat s)]
+               (if (= n js/NaN)
+                 ::s/invalid
+                 n)))))
 
 (def str->float (s/conformer str->float*))
 
-(defn comma-str->vector* [cs]
-  (if-not (string? cs)
+(defn comma-str->vector* [s]
+  (if-not (string? s)
     ::s/invalid
-    (reduce
-      (fn [v s]
-        (let [n (str->int* s)]
-          (if (= n ::s/invalid)
-            (reduced ::s/invalid)
-            (conj v n))))
-      []
-      (str/split cs ","))))
+    (let [s (str/trim s)]
+      (reduce
+        (fn [v s]
+          (conj v (parse str->int s)))
+        []
+        (str/split s #",")))))
 
 (def comma-str->vector (s/conformer comma-str->vector))
 

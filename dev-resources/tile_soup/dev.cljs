@@ -15,4 +15,5 @@
 ;(println (pr-str (parse-map "koalio-xml.tmx")))
 
 ;(println (pr-str (c/parse-map (read-public "koalio-csv.tmx"))))
+;(println (pr-str (parse-map "koalio-csv.tmx")))
 
