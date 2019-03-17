@@ -8,6 +8,6 @@
 (defmacro read-public [fname]
   (read-public* fname))
 
-(defmacro parse-map [s]
-  (list 'quote (c/parse-map (read-public* s))))
+(defmacro parse [s]
+  (list 'quote (c/parse (read-public* s))))
 

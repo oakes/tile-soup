@@ -13,7 +13,7 @@
         x))
     r))
 
-(defn parse-map [tiled-map]
+(defn parse [tiled-map]
   (let [parsed #?(:clj  (xml/parse (java.io.StringReader. tiled-map))
                   :cljs (xml/parse-str tiled-map))]
     (u/parse ::map/map (record->map parsed))))
