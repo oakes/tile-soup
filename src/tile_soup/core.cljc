@@ -18,3 +18,21 @@
                   :cljs (xml/parse-str tiled-map))]
     (u/parse ::map/map (record->map parsed))))
 
+(def ^:private ^:const horiz-bit 32)
+(def ^:private ^:const vert-bit 31)
+(def ^:private ^:const diag-bit 30)
+(def ^:private ^:const unknown-bit 29)
+
+(defn- get-bit [n k]
+  (bit-and (bit-shift-right n k) 1))
+
+(defn tile-id->map [id]
+  (let [horiz? (= 1 (get-bit id horiz-bit))
+        vert? (= 1 (get-bit id vert-bit))
+        diag? (= 1 (get-bit id diag-bit))
+        id (reduce bit-clear id (map dec [horiz-bit vert-bit diag-bit unknown-bit]))]
+    {:horizontal? horiz?
+     :vertical? vert?
+     :diagonal? diag?
+     :id id}))
+
