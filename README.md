@@ -1,6 +1,6 @@
 ## Introduction
 
-A Clojure and ClojureScript library for parsing tiled maps.
+A Clojure and ClojureScript library for parsing [tiled maps](https://www.mapeditor.org/). See [the dynadocs](https://oakes.github.io/tile-soup/) to learn how to use it.
 
 ## Development
 
