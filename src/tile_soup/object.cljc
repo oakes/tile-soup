@@ -19,10 +19,10 @@
 (s/def ::template string?)
 
 (s/def ::attrs (s/keys
-                 :req-un [::id
+                 :opt-un [::id
                           ::x
-                          ::y]
-                 :opt-un [::name
+                          ::y
+                          ::name
                           ::type
                           ::width
                           ::height

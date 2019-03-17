@@ -1,6 +1,8 @@
 (ns tile-soup.data-base64
   (:require [clojure.spec.alpha :as s]
             [clojure.string :as str]
+            [tile-soup.utils :as u]
+            [tile-soup.chunk :as chunk]
             #?(:clj [clojure.data.codec.base64 :as base64]))
   #?(:clj (:import [java.nio ByteBuffer ByteOrder])))
 
@@ -32,8 +34,14 @@
                         (range 0 len 4)))
                  (catch js/DOMException _ ::s/invalid))))))
 
-(s/def ::content (s/conformer (fn [content]
-                                (if (= 1 (count content))
-                                  (decode (first content))
-                                  (throw (ex-info "Expected only one child in base64-encoded tag" {}))))))
+(defmulti spec :tag)
+(defmethod spec nil [_] (s/conformer decode))
+(defmethod spec :chunk [_] (s/keys :req-un [::chunk/attrs ::content]))
+(defmethod spec :default [x]
+  (throw (ex-info (str (:tag x) " not supported in base64-encoded data tags") {})))
+(s/def ::content (s/conformer
+                   (fn [x]
+                     (->> x
+                          (map #(u/parse (spec %) %))
+                          (filter seq)))))
 

@@ -12,8 +12,8 @@
 (s/def ::probability u/str->float)
 
 (s/def ::attrs (s/keys
-                 :req-un [::id]
-                 :opt-un [::type
+                 :opt-un [::id
+                          ::type
                           ::terrain
                           ::probability]))
 

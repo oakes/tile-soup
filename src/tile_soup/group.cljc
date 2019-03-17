@@ -14,8 +14,8 @@
 (s/def ::visible u/str->boolean)
 
 (s/def ::attrs (s/keys
-                 :req-un [::id]
-                 :opt-un [::name
+                 :opt-un [::id
+                          ::name
                           ::offsetx
                           ::offsety
                           ::opacity

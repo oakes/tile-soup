@@ -18,8 +18,8 @@
 (s/def ::draworder #{"index" "topdown"})
 
 (s/def ::attrs (s/keys
-                 :req-un [::id]
-                 :opt-un [::name
+                 :opt-un [::id
+                          ::name
                           ::color
                           ::x
                           ::y

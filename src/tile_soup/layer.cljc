@@ -16,8 +16,8 @@
 (s/def ::offsety u/str->int)
 
 (s/def ::attrs (s/keys
-                 :req-un [::id]
-                 :opt-un [::name
+                 :opt-un [::id
+                          ::name
                           ::x
                           ::y
                           ::width
