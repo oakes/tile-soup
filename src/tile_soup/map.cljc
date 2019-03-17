@@ -5,7 +5,8 @@
             [tile-soup.tileset :as tileset]
             [tile-soup.layer :as layer]
             [tile-soup.objectgroup :as objectgroup]
-            [tile-soup.imagelayer :as imagelayer]))
+            [tile-soup.imagelayer :as imagelayer]
+            [tile-soup.group :as group]))
 
 (s/def ::version string?)
 (s/def ::tiledversion string?)
@@ -49,6 +50,7 @@
 (defmethod spec :layer [_] ::layer/layer)
 (defmethod spec :objectgroup [_] ::objectgroup/objectgroup)
 (defmethod spec :imagelayer [_] ::imagelayer/imagelayer)
+(defmethod spec :group [_] ::group/group)
 (defmethod spec :default [x]
   (throw (ex-info (str (:tag x) " not supported in map tags") {})))
 (s/def ::content (u/conformer spec))
