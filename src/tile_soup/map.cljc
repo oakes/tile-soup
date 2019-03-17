@@ -29,20 +29,21 @@
 (s/def ::nextlayerid u/str->int)
 (s/def ::nextobjectid u/str->int)
 
-(s/def ::attrs (s/keys :opt-un [::version
-                                ::tiledversion
-                                ::orientation
-                                ::renderorder
-                                ::width
-                                ::height
-                                ::tilewidth
-                                ::tileheight
-                                ::hexsidelength
-                                ::staggeraxis
-                                ::staggerindex
-                                ::backgroundcolor
-                                ::nextlayerid
-                                ::nextobjectid]))
+(s/def ::attrs (s/keys
+                 :opt-un [::version
+                          ::tiledversion
+                          ::orientation
+                          ::renderorder
+                          ::width
+                          ::height
+                          ::tilewidth
+                          ::tileheight
+                          ::hexsidelength
+                          ::staggeraxis
+                          ::staggerindex
+                          ::backgroundcolor
+                          ::nextlayerid
+                          ::nextobjectid]))
 
 (defmulti spec :tag)
 (defmethod spec :properties [_] ::properties/properties)

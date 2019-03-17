@@ -15,16 +15,17 @@
 (s/def ::offsetx u/str->int)
 (s/def ::offsety u/str->int)
 
-(s/def ::attrs (s/keys :opt-un [::id
-                                ::name
-                                ::x
-                                ::y
-                                ::width
-                                ::height
-                                ::opacity
-                                ::visible
-                                ::offsetx
-                                ::offsety]))
+(s/def ::attrs (s/keys
+                 :req-un [::id]
+                 :opt-un [::name
+                          ::x
+                          ::y
+                          ::width
+                          ::height
+                          ::opacity
+                          ::visible
+                          ::offsetx
+                          ::offsety]))
 
 (defmulti spec :tag)
 (defmethod spec :properties [_] ::properties/properties)

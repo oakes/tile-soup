@@ -14,17 +14,18 @@
 (s/def ::halign #{"left" "center" "right" "justify"})
 (s/def ::valign #{"top" "center" "bottom"})
 
-(s/def ::attrs (s/keys :req-un [::fontfamily
-                                ::pixelsize
-                                ::wrap
-                                ::color
-                                ::bold
-                                ::italic
-                                ::underline
-                                ::strikeout
-                                ::kerning
-                                ::halign
-                                ::valign]))
+(s/def ::attrs (s/keys
+                 :opt-un [::fontfamily
+                          ::pixelsize
+                          ::wrap
+                          ::color
+                          ::bold
+                          ::italic
+                          ::underline
+                          ::strikeout
+                          ::kerning
+                          ::halign
+                          ::valign]))
 
 (s/def ::text (s/keys :req-un [::attrs]))
 

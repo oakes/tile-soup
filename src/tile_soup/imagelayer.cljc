@@ -11,12 +11,13 @@
 (s/def ::opacity u/str->float)
 (s/def ::visible u/str->boolean)
 
-(s/def ::attrs (s/keys :opt-un [::id
-                                ::name
-                                ::offsetx
-                                ::offsety
-                                ::opacity
-                                ::visible]))
+(s/def ::attrs (s/keys
+                 :req-un [::id]
+                 :opt-un [::name
+                          ::offsetx
+                          ::offsety
+                          ::opacity
+                          ::visible]))
 
 (defmulti spec :tag)
 (defmethod spec :properties [_] ::properties/properties)

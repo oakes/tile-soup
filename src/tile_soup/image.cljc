@@ -10,12 +10,13 @@
 (s/def ::width u/str->int)
 (s/def ::height u/str->int)
 
-(s/def ::attrs (s/keys :opt-un [::format
-                                ::id
-                                ::source
-                                ::trans
-                                ::width
-                                ::height]))
+(s/def ::attrs (s/keys
+                 :opt-un [::format
+                          ::id
+                          ::source
+                          ::trans
+                          ::width
+                          ::height]))
 
 (defmulti spec :tag)
 (defmethod spec :data [_] ::data/data)

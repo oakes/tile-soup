@@ -11,10 +11,11 @@
 (s/def ::terrain u/comma-str->vector)
 (s/def ::probability u/str->float)
 
-(s/def ::attrs (s/keys :req-un [::id
-                                ::type
-                                ::terrain
-                                ::probability]))
+(s/def ::attrs (s/keys
+                 :req-un [::id]
+                 :opt-un [::type
+                          ::terrain
+                          ::probability]))
 
 (defmulti spec :tag)
 (defmethod spec :properties [_] ::properties/properties)

@@ -1,14 +1,13 @@
 (ns tile-soup.properties
   (:require [clojure.spec.alpha :as s]
-            [tile-soup.utils :as u]))
+            [tile-soup.utils :as u]
+            [tile-soup.property :as property]))
 
-(s/def ::name string?)
-(s/def ::type #{"string" "int" "float" "bool" "color" "file"})
-(s/def ::value any?)
+(defmulti spec :tag)
+(defmethod spec :property [_] ::property/property)
+(defmethod spec :default [x]
+  (throw (ex-info (str (:tag x) " not supported in properties tags") {})))
+(s/def ::content (u/conformer spec))
 
-(s/def ::attrs (s/keys :req-un [::name
-                                ::type
-                                ::value]))
-
-(s/def ::properties (s/keys :req-un [::attrs]))
+(s/def ::properties (s/keys :req-un [::content]))
 

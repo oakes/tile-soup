@@ -18,15 +18,16 @@
 (s/def ::tilecount u/str->int)
 (s/def ::columns u/str->int)
 
-(s/def ::attrs (s/keys :opt-un [::firstgid
-                                ::source
-                                ::name
-                                ::tilewidth
-                                ::tileheight
-                                ::spacing
-                                ::margin
-                                ::tilecount
-                                ::columns]))
+(s/def ::attrs (s/keys
+                 :opt-un [::firstgid
+                          ::source
+                          ::name
+                          ::tilewidth
+                          ::tileheight
+                          ::spacing
+                          ::margin
+                          ::tilecount
+                          ::columns]))
 
 (defmulti spec :tag)
 (defmethod spec :tileoffset [_] ::tileoffset/tileoffset)

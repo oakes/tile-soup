@@ -9,8 +9,9 @@
   (s/conformer (fn [_]
                  (throw (ex-info "Compression is not currently supported" {})))))
 
-(s/def ::attrs (s/keys :opt-un [::encoding
-                                ::compression]))
+(s/def ::attrs (s/keys
+                 :opt-un [::encoding
+                          ::compression]))
 
 (defn- get-encoding [x] (-> x :attrs :encoding))
 

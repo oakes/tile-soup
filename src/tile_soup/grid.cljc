@@ -6,9 +6,10 @@
 (s/def ::width u/str->int)
 (s/def ::height u/str->int)
 
-(s/def ::attrs (s/keys :req-un [::orientation
-                                ::width
-                                ::height]))
+(s/def ::attrs (s/keys
+                 :req-un [::orientation
+                          ::width
+                          ::height]))
 
 (s/def ::grid (s/keys :req-un [::attrs]))
 

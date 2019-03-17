@@ -17,18 +17,19 @@
 (s/def ::offsety u/str->int)
 (s/def ::draworder #{"index" "topdown"})
 
-(s/def ::attrs (s/keys :req-un [::id
-                                ::name
-                                ::color
-                                ::x
-                                ::y
-                                ::width
-                                ::height
-                                ::opacity
-                                ::visible
-                                ::offsetx
-                                ::offsety
-                                ::draworder]))
+(s/def ::attrs (s/keys
+                 :req-un [::id]
+                 :opt-un [::name
+                          ::color
+                          ::x
+                          ::y
+                          ::width
+                          ::height
+                          ::opacity
+                          ::visible
+                          ::offsetx
+                          ::offsety
+                          ::draworder]))
 
 (defmulti spec :tag)
 (defmethod spec :properties [_] ::properties/properties)

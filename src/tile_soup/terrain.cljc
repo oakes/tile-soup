@@ -6,8 +6,9 @@
 (s/def ::name string?)
 (s/def ::tile u/str->int)
 
-(s/def ::attrs (s/keys :req-un [::name
-                                ::tile]))
+(s/def ::attrs (s/keys
+                 :req-un [::tile]
+                 :opt-un [::name]))
 
 (defmulti spec :tag)
 (defmethod spec :properties [_] ::properties/properties)
