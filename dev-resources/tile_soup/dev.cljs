@@ -8,6 +8,9 @@
 (st/instrument)
 (set! s/*explain-out* expound/printer)
 
-(println (pr-str (c/parse-map (read-public "koalio-b64.tmx"))))
-(println (pr-str (parse-map "koalio-b64.tmx")))
+;(println (pr-str (c/parse-map (read-public "koalio-b64.tmx"))))
+;(println (pr-str (parse-map "koalio-b64.tmx")))
+
+;(println (pr-str (c/parse-map (read-public "koalio-xml.tmx"))))
+;(println (pr-str (parse-map "koalio-xml.tmx")))
 

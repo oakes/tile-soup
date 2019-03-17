@@ -1,8 +1,7 @@
 (ns tile-soup.data
   (:require [clojure.spec.alpha :as s]
             [tile-soup.data-base64 :as data-base64]
-            [tile-soup.utils :as u]
-            [tile-soup.data-tile :as data-tile]))
+            [tile-soup.utils :as u]))
 
 (s/def ::encoding #{"base64" "csv"})
 (s/def ::compression #{"gzip" "zlib"})
@@ -10,12 +9,17 @@
 (s/def ::attrs (s/keys :opt-un [::encoding
                                 ::compression]))
 
-(s/def ::tile (s/conformer (fn [tile]
-                             (if (not= :tile (:tag tile))
-                               ::s/invalid
-                               (or (-> tile :attrs :gid u/str->int*)
-                                   ::s/invalid)))))
-(s/def ::content (s/coll-of ::tile))
+(defn- tile [tile]
+  (if (not= :tile (:tag tile))
+    ::s/invalid
+    (or (some-> tile :attrs :gid u/str->int*)
+        0)))
+
+(defmulti content :tag)
+(defmethod content nil [_] nil)
+(defmethod content :tile [x] (tile x))
+(s/def ::content (s/conformer (fn [x]
+                                (vec (keep content x)))))
 
 (defmulti data #(-> % :attrs :encoding))
 (defmethod data nil [_] (s/keys :req-un [::attrs ::content]))

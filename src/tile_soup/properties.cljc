@@ -10,5 +10,5 @@
                                 ::type
                                 ::value]))
 
-(s/def ::grid (s/keys :req-un [::attrs]))
+(s/def ::properties (s/keys :req-un [::attrs]))
 
