@@ -1,6 +1,6 @@
 ^{:watch-dirs ["src" "dev-resources"]}
 {:main          tile-soup.dev
  :optimizations :none
- :output-to     "target/public/main.js"
- :output-dir    "target/public/main.out"
- :asset-path    "main.out"}
+ :output-to     "target/dynadoc-extend/main.js"
+ :output-dir    "target/dynadoc-extend/main.out"
+ :asset-path    "/main.out"}

@@ -13,6 +13,10 @@
         x))
     r))
 
+(s/fdef parse
+  :args (s/cat :tiled-map string?)
+  :ret ::map/map)
+
 (defn parse [tiled-map]
   (let [parsed #?(:clj  (xml/parse (java.io.StringReader. tiled-map))
                   :cljs (xml/parse-str tiled-map))]
@@ -25,6 +29,10 @@
 
 (defn- get-bit [n k]
   (bit-and (bit-shift-right n k) 1))
+
+(s/fdef tile-id->map
+  :args (s/cat :id integer?)
+  :ret map?)
 
 (defn tile-id->map [id]
   (let [horiz? (= 1 (get-bit id horiz-bit))
