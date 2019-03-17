@@ -1,44 +1,40 @@
-(ns tile-soup.objectgroup
+(ns tile-soup.object
   (:require [clojure.spec.alpha :as s]
             [tile-soup.utils :as u]
-            [tile-soup.properties :as properties]
-            [tile-soup.object :as object]))
+            [tile-soup.properties :as properties]))
 
 (s/def ::id u/str->int)
 (s/def ::name string?)
-(s/def ::color string?)
+(s/def ::type string?)
 (s/def ::x u/str->int)
 (s/def ::y u/str->int)
 (s/def ::width u/str->int)
 (s/def ::height u/str->int)
-(s/def ::opacity u/str->float)
+(s/def ::rotation u/str->float)
+(s/def ::gid u/str->int)
 (s/def ::visible u/str->boolean)
-(s/def ::offsetx u/str->int)
-(s/def ::offsety u/str->int)
-(s/def ::draworder #{"index" "topdown"})
+(s/def ::template string?)
 
 (s/def ::attrs (s/keys :req-un [::id
                                 ::name
-                                ::color
+                                ::type
                                 ::x
                                 ::y
                                 ::width
                                 ::height
-                                ::opacity
+                                ::rotation
+                                ::gid
                                 ::visible
-                                ::offsetx
-                                ::offsety
-                                ::draworder]))
+                                ::template]))
 
 (defmulti spec :tag)
 (defmethod spec :properties [_] ::properties/properties)
-(defmethod spec :object [_] ::object/object)
 (defmethod spec :default [x]
-  (throw (ex-info (str (:tag x) " not supported in objectgroup tags") {})))
+  (throw (ex-info (str (:tag x) " not supported in object tags") {})))
 (s/def ::content (s/conformer (fn [x]
                                 (->> x
                                      (remove string?)
                                      (mapv #(s/conform (spec %) %))))))
 
-(s/def ::objectgroup (s/keys :req-un [::attrs ::content]))
+(s/def ::object (s/keys :req-un [::attrs ::content]))
 
