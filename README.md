@@ -1,3 +1,5 @@
+[![Clojars Project](https://img.shields.io/clojars/v/tile-soup.svg)](https://clojars.org/tile-soup)
+
 ## Introduction
 
 A Clojure and ClojureScript library for parsing [tiled maps](https://www.mapeditor.org/). See [the dynadocs](https://oakes.github.io/tile-soup/) to learn how to use it.
