@@ -105,5 +105,5 @@
   
   For more info, see:
   https://doc.mapeditor.org/en/stable/reference/tmx-map-format/#tile-flipping"
-  (tile-id->map 268435457))
+  (tile-id->map 3221225473))
 
