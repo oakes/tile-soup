@@ -34,7 +34,7 @@
 
 (defn str->float* [s]
   (cond
-    (float? s) s
+    (number? s) s
     (not (string? s)) ::s/invalid
     :else
     (let [s (str/trim s)]
