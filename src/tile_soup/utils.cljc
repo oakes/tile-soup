@@ -17,26 +17,34 @@
            (mapv #(parse (spec %) %))))))
 
 (defn str->int* [s]
-  (let [s (str/trim s)]
-    #?(:clj (try
-              (Integer/parseInt s)
-              (catch Exception _ ::s/invalid))
-       :cljs (let [n (js/parseInt s)]
-               (if (js/isNaN n)
-                 ::s/invalid
-                 n)))))
+  (cond
+    (integer? s) s
+    (not (string? s)) ::s/invalid
+    :else
+    (let [s (str/trim s)]
+      #?(:clj (try
+                (Integer/parseInt s)
+                (catch Exception _ ::s/invalid))
+         :cljs (let [n (js/parseInt s)]
+                 (if (js/isNaN n)
+                   ::s/invalid
+                   n))))))
 
 (def str->int (s/conformer str->int*))
 
 (defn str->float* [s]
-  (let [s (str/trim s)]
-    #?(:clj (try
-              (Double/parseDouble s)
-              (catch Exception _ ::s/invalid))
-       :cljs (let [n (js/parseFloat s)]
-               (if (= n js/NaN)
-                 ::s/invalid
-                 n)))))
+  (cond
+    (float? s) s
+    (not (string? s)) ::s/invalid
+    :else
+    (let [s (str/trim s)]
+      #?(:clj (try
+                (Double/parseDouble s)
+                (catch Exception _ ::s/invalid))
+         :cljs (let [n (js/parseFloat s)]
+                 (if (= n js/NaN)
+                   ::s/invalid
+                   n))))))
 
 (def str->float (s/conformer str->float*))
 
