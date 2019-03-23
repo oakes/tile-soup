@@ -4,5 +4,7 @@ pom.xml
 pom.xml.asc
 **/gen
 **/target
+dev-resources/dynadoc-extend/*.js
+dev-resources/dynadoc-extend/*.out
 .*
 !.gitignore
