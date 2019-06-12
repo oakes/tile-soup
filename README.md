@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A Clojure and ClojureScript library for parsing [tiled maps](https://www.mapeditor.org/).
+A Clojure and ClojureScript library for parsing [tiled maps](https://www.mapeditor.org/). It parses and validates a TMX file into a map, and automatically decodes Base64 and CSV formatted data and coerces numbers when necessary.
 
 ## Usage
 
