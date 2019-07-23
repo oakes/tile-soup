@@ -4,7 +4,7 @@
 
 A Clojure and ClojureScript library for parsing [tiled maps](https://www.mapeditor.org/). It parses and validates a TMX file into a map, and automatically decodes Base64 and CSV formatted data and coerces numbers when necessary.
 
-### Try the [interactive docs](https://oakes.github.io/tile-soup/)!
+### [Try the interactive docs!](https://oakes.github.io/tile-soup/)
 
 ## Usage
 
