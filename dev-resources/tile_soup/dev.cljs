@@ -96,7 +96,24 @@
        <tile gid=\"157\"/>"
        "</data>"
        "</layer>"
-       "</map>"))])
+       "</map>"))]
+  ["Parsing a TSX file"
+   (parse :tile-soup.tileset/tileset
+     (str
+       "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+       "<tileset name=\"Desert\" tilewidth=\"32\" tileheight=\"32\" spacing=\"1\" margin=\"1\" tilecount=\"48\" columns=\"8\">"
+       "<image source=\"tmw_desert_spacing.png\" width=\"265\" height=\"199\"/>"
+       "<terraintypes>"
+       "<terrain name=\"Desert\" tile=\"29\"/>"
+       "<terrain name=\"Brick\" tile=\"9\"/>"
+       "<terrain name=\"Cobblestone\" tile=\"33\"/>"
+       "<terrain name=\"Dirt\" tile=\"14\"/>"
+       "</terraintypes>"
+       "<tile id=\"0\" terrain=\"0,0,0,1\"/>"
+       "<tile id=\"1\" terrain=\"0,0,1,1\"/>"
+       "<tile id=\"2\" terrain=\"0,0,1,0\"/>"
+       "<tile id=\"3\" terrain=\"3,3,3,0\"/>"
+       "</tileset>"))])
 
 (defexample tile-soup.core/tile-id->map
   "Tile IDs are stored in data tags with some of the highest bits used to store
