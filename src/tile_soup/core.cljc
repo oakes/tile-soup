@@ -18,11 +18,16 @@
      :cljs (xml/parse-str xml)))
 
 (s/fdef parse
-  :args (s/cat :tiled-map string?)
-  :ret ::map/map)
+  :args (s/cat :spec (s/? qualified-keyword?) :tiled-map string?)
+  :ret map?)
 
-(defn parse [tiled-map]
-  (u/parse ::map/map (record->map (parse-xml tiled-map))))
+(defn parse
+  "Parses `tiled-map` (an XML-formatted string) into a hash map. If `spec` is supplied,
+  the parsing will done with that spec rather than the default :tile-soup.map/map spec."
+  ([tiled-map]
+   (parse ::map/map tiled-map))
+  ([spec tiled-map]
+   (u/parse spec (record->map (parse-xml tiled-map)))))
 
 (def ^:private ^:const horiz-bit 31)
 (def ^:private ^:const vert-bit 30)
