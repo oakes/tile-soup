@@ -2,8 +2,8 @@
  :deps {org.clojure/data.xml {:mvn/version "0.2.0-alpha6"}
         expound {:mvn/version "0.7.2"}
         org.clojure/data.codec {:mvn/version "0.1.1"}}
- :aliases {:dev {:extra-deps {org.clojure/clojurescript {:mvn/version "1.10.520"}
-                              com.bhauman/figwheel-main {:mvn/version "0.2.0"}
+ :aliases {:dev {:extra-deps {org.clojure/clojurescript {:mvn/version "1.10.764"}
+                              com.bhauman/figwheel-main {:mvn/version "0.2.9"}
                               dynadoc {:mvn/version "RELEASE"}}
                  :extra-paths ["dev-resources"]
                  :main-opts ["dev.clj"]}
