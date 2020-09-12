@@ -4,7 +4,7 @@
             [tile-soup.properties :as properties]))
 
 (s/def ::name string?)
-(s/def ::tile u/str->int)
+(s/def ::tile u/str->long)
 
 (s/def ::attrs (s/keys
                  :req-un [::tile]

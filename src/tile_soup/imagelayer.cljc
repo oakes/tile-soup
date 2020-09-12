@@ -4,10 +4,10 @@
             [tile-soup.properties :as properties]
             [tile-soup.image :as image]))
 
-(s/def ::id u/str->int)
+(s/def ::id u/str->long)
 (s/def ::name string?)
-(s/def ::offsetx u/str->int)
-(s/def ::offsety u/str->int)
+(s/def ::offsetx u/str->long)
+(s/def ::offsety u/str->long)
 (s/def ::opacity u/str->float)
 (s/def ::visible u/str->boolean)
 

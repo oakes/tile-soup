@@ -18,16 +18,16 @@
                        "right-up"
                        "left-down"
                        "left-up"})
-(s/def ::width u/str->int)
-(s/def ::height u/str->int)
-(s/def ::tilewidth u/str->int)
-(s/def ::tileheight u/str->int)
-(s/def ::hexsidelength u/str->int)
+(s/def ::width u/str->long)
+(s/def ::height u/str->long)
+(s/def ::tilewidth u/str->long)
+(s/def ::tileheight u/str->long)
+(s/def ::hexsidelength u/str->long)
 (s/def ::staggeraxis #{"x" "y"})
 (s/def ::staggerindex #{"even" "odd"})
 (s/def ::backgroundcolor string?)
-(s/def ::nextlayerid u/str->int)
-(s/def ::nextobjectid u/str->int)
+(s/def ::nextlayerid u/str->long)
+(s/def ::nextobjectid u/str->long)
 
 (s/def ::attrs (s/keys
                  :opt-un [::version

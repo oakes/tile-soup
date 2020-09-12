@@ -4,17 +4,17 @@
             [tile-soup.properties :as properties]
             [tile-soup.object :as object]))
 
-(s/def ::id u/str->int)
+(s/def ::id u/str->long)
 (s/def ::name string?)
 (s/def ::color string?)
-(s/def ::x u/str->int)
-(s/def ::y u/str->int)
-(s/def ::width u/str->int)
-(s/def ::height u/str->int)
+(s/def ::x u/str->long)
+(s/def ::y u/str->long)
+(s/def ::width u/str->long)
+(s/def ::height u/str->long)
 (s/def ::opacity u/str->float)
 (s/def ::visible u/str->boolean)
-(s/def ::offsetx u/str->int)
-(s/def ::offsety u/str->int)
+(s/def ::offsetx u/str->long)
+(s/def ::offsety u/str->long)
 (s/def ::draworder #{"index" "topdown"})
 
 (s/def ::attrs (s/keys
