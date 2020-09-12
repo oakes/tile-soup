@@ -1,1 +1,2 @@
-{:open-url "http://localhost:5000/cljs/tile-soup.core"}
+{:open-url "http://localhost:5000/cljs/tile-soup.core"
+ :clean-outputs true}
