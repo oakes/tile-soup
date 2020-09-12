@@ -25,7 +25,7 @@
       #?(:clj (try
                 (Long/parseLong s)
                 (catch Exception _ ::s/invalid))
-         :cljs (let [n (js/Number s)]
+         :cljs (let [n (js/parseInt s)]
                  (if (js/isNaN n)
                    ::s/invalid
                    n))))))
