@@ -1,4 +1,4 @@
-(defproject tile-soup "0.4.2-SNAPSHOT"
+(defproject tile-soup "0.4.2"
   :description "A library to parse tiled maps"
   :url "https://github.com/oakes/tile-soup"
   :license {:name "Public Domain"
