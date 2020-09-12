@@ -3,7 +3,7 @@
             [tile-soup.utils :as u]))
 
 (defn- tile [tile]
-  (or (some->> tile :attrs :gid (u/parse u/str->int))
+  (or (some->> tile :attrs :gid (u/parse u/str->long))
       0))
 
 (defmulti spec :tag)

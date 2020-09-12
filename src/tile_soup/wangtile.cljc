@@ -2,8 +2,8 @@
   (:require [clojure.spec.alpha :as s]
             [tile-soup.utils :as u]))
 
-(s/def ::tileid u/str->int)
-(s/def ::wangid u/str->int)
+(s/def ::tileid u/str->long)
+(s/def ::wangid u/str->long)
 
 (s/def ::attrs (s/keys
                  :req-un [::tileid

@@ -6,15 +6,15 @@
             [tile-soup.polyline :as polyline]
             [tile-soup.text :as text]))
 
-(s/def ::id u/str->int)
+(s/def ::id u/str->long)
 (s/def ::name string?)
 (s/def ::type string?)
-(s/def ::x u/str->int)
-(s/def ::y u/str->int)
-(s/def ::width u/str->int)
-(s/def ::height u/str->int)
+(s/def ::x u/str->long)
+(s/def ::y u/str->long)
+(s/def ::width u/str->long)
+(s/def ::height u/str->long)
 (s/def ::rotation u/str->float)
-(s/def ::gid u/str->int)
+(s/def ::gid u/str->long)
 (s/def ::visible u/str->boolean)
 (s/def ::template string?)
 

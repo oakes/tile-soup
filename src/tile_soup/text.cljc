@@ -3,7 +3,7 @@
             [tile-soup.utils :as u]))
 
 (s/def ::fontfamily string?)
-(s/def ::pixelsize u/str->int)
+(s/def ::pixelsize u/str->long)
 (s/def ::wrap u/str->boolean)
 (s/def ::color string?)
 (s/def ::bold u/str->boolean)

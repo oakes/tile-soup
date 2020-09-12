@@ -6,7 +6,7 @@
             [tile-soup.objectgroup :as objectgroup]
             [tile-soup.animation :as animation]))
 
-(s/def ::id u/str->int)
+(s/def ::id u/str->long)
 (s/def ::type string?)
 (s/def ::terrain u/comma-str->vector)
 (s/def ::probability u/str->float)

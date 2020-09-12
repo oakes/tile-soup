@@ -4,11 +4,11 @@
             [tile-soup.data :as data]))
 
 (s/def ::format string?)
-(s/def ::id u/str->int)
+(s/def ::id u/str->long)
 (s/def ::source string?)
 (s/def ::trans string?)
-(s/def ::width u/str->int)
-(s/def ::height u/str->int)
+(s/def ::width u/str->long)
+(s/def ::height u/str->long)
 
 (s/def ::attrs (s/keys
                  :opt-un [::format

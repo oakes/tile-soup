@@ -9,15 +9,15 @@
             [tile-soup.tile :as tile]
             [tile-soup.wangsets :as wangsets]))
 
-(s/def ::firstgid u/str->int)
+(s/def ::firstgid u/str->long)
 (s/def ::source string?)
 (s/def ::name string?)
-(s/def ::tilewidth u/str->int)
-(s/def ::tileheight u/str->int)
-(s/def ::spacing u/str->int)
-(s/def ::margin u/str->int)
-(s/def ::tilecount u/str->int)
-(s/def ::columns u/str->int)
+(s/def ::tilewidth u/str->long)
+(s/def ::tileheight u/str->long)
+(s/def ::spacing u/str->long)
+(s/def ::margin u/str->long)
+(s/def ::tilecount u/str->long)
+(s/def ::columns u/str->long)
 
 (s/def ::attrs (s/keys
                  :opt-un [::firstgid

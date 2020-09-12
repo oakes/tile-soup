@@ -16,21 +16,21 @@
            (remove string?)
            (mapv #(parse (spec %) %))))))
 
-(defn str->int* [s]
+(defn str->long* [s]
   (cond
     (integer? s) s
     (not (string? s)) ::s/invalid
     :else
     (let [s (str/trim s)]
       #?(:clj (try
-                (Integer/parseInt s)
+                (Long/parseLong s)
                 (catch Exception _ ::s/invalid))
-         :cljs (let [n (js/parseInt s)]
+         :cljs (let [n (js/Number s)]
                  (if (js/isNaN n)
                    ::s/invalid
                    n))))))
 
-(def str->int (s/conformer str->int*))
+(def str->long (s/conformer str->long*))
 
 (defn str->float* [s]
   (cond
@@ -54,14 +54,14 @@
     (let [s (str/trim s)]
       (reduce
         (fn [v s]
-          (conj v (parse str->int s)))
+          (conj v (parse str->long s)))
         []
         (str/split s #",")))))
 
 (def comma-str->vector (s/conformer comma-str->vector*))
 
 (defn str->boolean* [s]
-  (let [ret (str->int* s)]
+  (let [ret (str->long* s)]
     (if (= ret ::s/invalid)
       ret
       (= ret 1))))

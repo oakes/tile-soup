@@ -4,7 +4,7 @@
 
 (s/def ::name string?)
 (s/def ::color string?)
-(s/def ::tile u/str->int)
+(s/def ::tile u/str->long)
 (s/def ::probability u/str->float)
 
 (s/def ::attrs (s/keys
